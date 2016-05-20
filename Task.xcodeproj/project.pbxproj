@@ -19,6 +19,9 @@
 		8B33053A1CEE5284004B5A8F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B3305381CEE5284004B5A8F /* Model.xcdatamodeld */; };
 		8B33053D1CEE5515004B5A8F /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33053B1CEE5515004B5A8F /* Task+CoreDataProperties.swift */; };
 		8B33053E1CEE5515004B5A8F /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33053C1CEE5515004B5A8F /* Task.swift */; };
+		8B3305431CEE5806004B5A8F /* TaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3305421CEE5806004B5A8F /* TaskController.swift */; };
+		8B3305451CEE8616004B5A8F /* DateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3305441CEE8616004B5A8F /* DateHelpers.swift */; };
+		8B3305471CEE9351004B5A8F /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3305461CEE9351004B5A8F /* ButtonTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,9 @@
 		8B3305391CEE5284004B5A8F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		8B33053B1CEE5515004B5A8F /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8B33053C1CEE5515004B5A8F /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		8B3305421CEE5806004B5A8F /* TaskController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskController.swift; sourceTree = "<group>"; };
+		8B3305441CEE8616004B5A8F /* DateHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelpers.swift; sourceTree = "<group>"; };
+		8B3305461CEE9351004B5A8F /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,11 +115,14 @@
 			children = (
 				68D78A251BD6C26500509A87 /* AppDelegate.swift */,
 				8B3305361CEE5242004B5A8F /* Stack.swift */,
-				8B33053F1CEE551E004B5A8F /* Model */,
+				8B3305381CEE5284004B5A8F /* Model.xcdatamodeld */,
+				8B3305441CEE8616004B5A8F /* DateHelpers.swift */,
+				8B3305481CEE935C004B5A8F /* View */,
 				8B3305401CEE5533004B5A8F /* View Controllers */,
+				8B3305411CEE57C9004B5A8F /* Controller */,
+				8B33053F1CEE551E004B5A8F /* Model */,
 				68D78A291BD6C26500509A87 /* Main.storyboard */,
 				68D78A2C1BD6C26500509A87 /* Assets.xcassets */,
-				8B3305381CEE5284004B5A8F /* Model.xcdatamodeld */,
 				68D78A2E1BD6C26500509A87 /* LaunchScreen.storyboard */,
 				68D78A311BD6C26500509A87 /* Info.plist */,
 			);
@@ -154,6 +163,22 @@
 				8B3305341CEE51CC004B5A8F /* TaskDetailTableViewController.swift */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		8B3305411CEE57C9004B5A8F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8B3305421CEE5806004B5A8F /* TaskController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		8B3305481CEE935C004B5A8F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8B3305461CEE9351004B5A8F /* ButtonTableViewCell.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,7 +317,10 @@
 				68D78A261BD6C26500509A87 /* AppDelegate.swift in Sources */,
 				8B33053D1CEE5515004B5A8F /* Task+CoreDataProperties.swift in Sources */,
 				8B3305351CEE51CC004B5A8F /* TaskDetailTableViewController.swift in Sources */,
+				8B3305431CEE5806004B5A8F /* TaskController.swift in Sources */,
+				8B3305471CEE9351004B5A8F /* ButtonTableViewCell.swift in Sources */,
 				8B33053A1CEE5284004B5A8F /* Model.xcdatamodeld in Sources */,
+				8B3305451CEE8616004B5A8F /* DateHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

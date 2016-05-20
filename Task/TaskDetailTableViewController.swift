@@ -10,20 +10,72 @@ import UIKit
 
 class TaskDetailTableViewController: UITableViewController {
 
+    var task: Task?
+    
+    var dueDateValue: NSDate?
+    
+    
+    //MARK: - IBOutlet
+    
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var dueDateTextField: UITextField!
+    @IBOutlet weak var notesTextView: UITextView!
+    @IBOutlet var dueDatePicker: UIDatePicker!
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+       dueDateTextField.inputView = dueDatePicker
+        
+        if let task = task {
+            updateWithTask(task)
+        }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    //MARK: - IBAction
+    
+    @IBAction func saveButtonPressed(sender: AnyObject) {
+    //This action should save a new task if the task property is nil, and update the existing task otherwise.
+    }
+    
+    
+    @IBAction func datePickerValueChanged(sender: UIDatePicker) {
+        
+    }
+
+    
+    @IBAction func userTappedView(sender: AnyObject) {
+        self.nameTextField.resignFirstResponder()
+        self.dueDateTextField.resignFirstResponder()
+        self.notesTextView.resignFirstResponder()
+    }
+    
+    
+    //MARK: - Functions
+    
+    func updateWithTask(task: Task) {
+        nameTextField.text = task.name
+        dueDateTextField.text = task.due?.stringValue()
+        notesTextView.text = task.notes
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 
     // MARK: - Table view data source
 
