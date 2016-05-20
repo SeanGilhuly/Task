@@ -19,15 +19,15 @@ class TaskController {
         self.tasks = fetchTasks()
     }
     
-    // MARK: - Mock CoreData
-    
-    var mockTasks:[Task] {
-        let task1 = Task(name: "name")
-        let task2 = Task(name: "bob")
-        
-        return [task1, task2]
-    }
-    
+//    // MARK: - Mock CoreData
+//    
+//    var mockTasks:[Task] {
+//        let task1 = Task(name: "sean", notes: "test")
+//        let task2 = Task(name: "bob")
+//        
+//        return [task1, task2]
+//    }
+//    
     
     
     // MARK: - Computed Array
@@ -56,28 +56,41 @@ class TaskController {
     // MARK: - Functions
     
     func addTask(name: String, notes: String?, due: NSDate?) {
+        let _ = Task(name: name, notes: notes, due: due)
+        saveToPersistentStore()
         
     }
     
     func removeTask(task: Task) {
-        
-    }
-    
-    func updateTask(task: Task, name: String, notes: String?, due: NSDate?, isComplete: Bool) {
-        
+        if let moc = task.managedObjectContext {
+            moc.deleteObject(task)
+            saveToPersistentStore()
+        }
     }
     
     func saveToPersistentStore() {
-        
+        let moc = Stack.sharedStack.managedObjectContext
+        do {
+            try moc.save()
+        } catch {
+            print("There was a problem saving to persistent store")
+        }
     }
     
     func fetchTasks() -> [Task] {
-    return mockTasks
+        let request = NSFetchRequest(entityName: "Task")
+        
+        let moc = Stack.sharedStack.managedObjectContext
+        
+        return (try? moc.executeFetchRequest(request)) as? [Task] ?? []
     }
     
-    func updateWithTask(task: Task) {
-        
+    func updateTask(task: Task, name: String, notes: String?, due: NSDate?) {
+        task.name = name
+        task.notes = notes
+        task.due = due
     }
+   
     
     
 }

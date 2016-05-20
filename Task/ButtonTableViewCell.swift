@@ -22,11 +22,6 @@ class ButtonTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
     //MARK: - IBActions
     
@@ -52,6 +47,7 @@ protocol ButtonTableViewCellDelegate {
 extension ButtonTableViewCell {
     func updateWithTask(task: Task) {
         primaryLabel.text = task.name
+        updateButton(task.isComplete.boolValue)
         
     }
 }

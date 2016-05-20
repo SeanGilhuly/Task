@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TaskListTableViewController: UITableViewController, ButtonTableViewCell {
+class TaskListTableViewController: UITableViewController, ButtonTableViewCellDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +29,13 @@ class TaskListTableViewController: UITableViewController, ButtonTableViewCell {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as? ButtonTableViewCell ?? ButtonTableViewCell()
 
         // Configure the cell...
 
         let task = TaskController.sharedController.tasks[indexPath.row]
         cell.updateWithTask(task)
+        cell.delegate = self
         return cell
     }
 
@@ -49,12 +50,18 @@ class TaskListTableViewController: UITableViewController, ButtonTableViewCell {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
+    
+    // MARK: - ButtonTableViewCellDelegate
+    
+    func buttonCellButtonTapped(sender: ButtonTableViewCell) {
+        
+    }
 
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toAddTask" {
+        if segue.identifier == "toEditTask" {
             if let taskDetailViewController = segue.destinationViewController as? TaskDetailTableViewController {
                 if let taskCell = sender as? UITableViewCell {
                     if let indexPath = tableView.indexPathForCell(taskCell) {
