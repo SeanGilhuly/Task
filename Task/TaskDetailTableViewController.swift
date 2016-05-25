@@ -45,7 +45,7 @@ class TaskDetailTableViewController: UITableViewController {
     //MARK: - IBAction
     
     @IBAction func saveButtonPressed(sender: AnyObject) {
-        updateTask()
+
         
     }
     

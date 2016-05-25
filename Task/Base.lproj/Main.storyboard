@@ -18,7 +18,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="adU-hT-Neb" id="nJ0-J4-vg3">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mee-jK-Sg3">
@@ -62,6 +62,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Task List:" id="pkV-dx-jOp">
+                        <barButtonItem key="backBarButtonItem" title="Cancel" id="YMH-A4-fVJ"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="KOP-Nk-LG5">
                             <connections>
                                 <segue destination="K8W-Jo-RCB" kind="show" identifier="toAddTask" id="1AH-dc-AKx"/>
@@ -167,6 +168,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Task Detail:" id="bcV-fu-3bD">
+                        <barButtonItem key="backBarButtonItem" title="cancel" id="6ZI-Fb-lTw"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="S8b-YW-ZTo">
                             <connections>
                                 <action selector="saveButtonPressed:" destination="K8W-Jo-RCB" id="VmG-hf-bic"/>
