@@ -10,11 +10,23 @@ import UIKit
 
 class TaskDetailTableViewController: UITableViewController {
 
+    // MARK - IBOutlets
+    
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var dueDateTextField: UITextField!
+    @IBOutlet weak var notesTextField: UITextView!
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
 
+    // MARK: - IBActions
+    
+    
     
 
     // MARK: - Table view data source
