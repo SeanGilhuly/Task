@@ -15,7 +15,7 @@ class TaskDetailTableViewController: UITableViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dueDateTextField: UITextField!
     @IBOutlet weak var notesTextField: UITextView!
-    @IBOutlet var dueDatePicker: UIDatePicker!
+    @IBOutlet var datePicker: UIDatePicker!
     
     var task: Task?
     
@@ -25,7 +25,7 @@ class TaskDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dueDateTextField.inputView = dueDatePicker
+        dueDateTextField.inputView = datePicker
         
         if let task = task {
             updateWithTask(task)
@@ -36,6 +36,7 @@ class TaskDetailTableViewController: UITableViewController {
     // MARK: - IBActions
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
+        updateTask()
         navigationController?.popViewControllerAnimated(true)
     }
     

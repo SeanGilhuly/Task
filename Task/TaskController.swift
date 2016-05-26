@@ -15,28 +15,24 @@ class TaskController {
     
     static let sharedController = TaskController()
     
-    // MARK: - Task Property
+    // MARK: - Fetech
 
-    var tasks: [Task] = []
+    let fetchedResultsController: NSFetchedResultsController
     
     init() {
-        self.tasks = fetchTasks()
-    }
-    
-    // MARK: - Computed Properties
-    
-    var completedTasks: [Task] {
         let request = NSFetchRequest(entityName: "Task")
-        let moc = Stack.sharedStack.managedObjectContext
-        let tasks = (try? moc.executeFetchRequest(request)) as? [Task] ?? []
-        return tasks.filter({$0.isComplete.boolValue})
-    }
-    
-    var incompleteTasks: [Task] {
-        let request = NSFetchRequest(entityName: "Task")
-        let moc = Stack.sharedStack.managedObjectContext
-        let tasks = (try? moc.executeFetchRequest(request)) as? [Task] ?? []
-        return tasks.filter({!$0.isComplete.boolValue})
+        let compeletedSortDescriptor = NSSortDescriptor(key: "isComplete", ascending: false)
+        let dueSortDescriptor = NSSortDescriptor(key: "due", ascending: false)
+        request.sortDescriptors = [compeletedSortDescriptor, dueSortDescriptor]
+        
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: Stack.sharedStack.managedObjectContext, sectionNameKeyPath: "isComplete", cacheName: nil)
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            print("There was an error trying to save")
+        }
+        
     }
     
     // MARK: - Mock Data
@@ -82,9 +78,5 @@ class TaskController {
     func isCompleteValueToggle(task: Task) {
         task.isComplete = !task.isComplete.boolValue
         saveToPersistentStore()
-    }
-        
-    func fetchTasks() -> [Task] {
-        return mockTasks
     }
 }
