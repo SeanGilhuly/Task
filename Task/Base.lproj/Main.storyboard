@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCell" id="hCY-aX-Ruz">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCell" id="hCY-aX-Ruz" customClass="ButtonTableViewCell" customModule="Task" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hCY-aX-Ruz" id="TRx-ZJ-rCl">
@@ -23,6 +23,9 @@
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RfB-da-Wm5">
                                             <rect key="frame" x="546" y="7" width="46" height="30"/>
                                             <state key="normal" title="Button"/>
+                                            <connections>
+                                                <action selector="buttonTapped:" destination="hCY-aX-Ruz" eventType="touchUpInside" id="l2L-Q9-s8W"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDa-DT-clI">
                                             <rect key="frame" x="8" y="11" width="42" height="21"/>
@@ -33,6 +36,8 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="completeButton" destination="RfB-da-Wm5" id="bYo-0y-Gpt"/>
+                                    <outlet property="primaryLabel" destination="iDa-DT-clI" id="LPW-YU-3VE"/>
                                     <segue destination="FPJ-D0-taG" kind="show" identifier="editTask" id="FkN-jC-u20"/>
                                 </connections>
                             </tableViewCell>
@@ -50,13 +55,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="labelField" destination="iDa-DT-clI" id="6ND-dC-plh"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q2f-kO-sOv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2036" y="382"/>
+            <point key="canvasLocation" x="2218" y="387"/>
         </scene>
         <!--Title-->
         <scene sceneID="LiR-7H-kWe">
@@ -153,18 +155,45 @@
                         <barButtonItem title="Item" id="32n-gr-iwz"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Title" id="lwx-DP-tj8">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="7lo-V4-Ii7"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="kEW-8V-sbV">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="FPJ-D0-taG" id="Ty0-wB-EhE"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="7lo-V4-Ii7">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="FPJ-D0-taG" id="pKd-3h-yoS"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="dueDatePicker" destination="xeP-dp-a18" id="dX9-lx-qFa"/>
                         <outlet property="dueDateTextField" destination="beY-Mb-sKw" id="MsS-hX-G2h"/>
                         <outlet property="nameTextField" destination="fgX-y7-bHB" id="1fI-E7-czD"/>
                         <outlet property="notesTextField" destination="jCr-cs-bik" id="L4d-f2-kii"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PtX-AU-xlu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="0Mc-wj-Wza">
+                    <connections>
+                        <action selector="userTappedView:" destination="FPJ-D0-taG" id="Aef-V4-sjQ"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" id="xeP-dp-a18">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <gestureRecognizers/>
+                    <date key="date" timeIntervalSinceReferenceDate="485964648.07634902">
+                        <!--2016-05-26 14:10:48 +0000-->
+                    </date>
+                    <connections>
+                        <action selector="datePickerValueChanged:" destination="FPJ-D0-taG" eventType="valueChanged" id="Tc2-V4-Y8B"/>
+                        <outletCollection property="gestureRecognizers" destination="0Mc-wj-Wza" appends="YES" id="Rop-wh-8gy"/>
+                    </connections>
+                </datePicker>
             </objects>
-            <point key="canvasLocation" x="2727" y="382"/>
+            <point key="canvasLocation" x="2956" y="387"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WSa-VX-Cl0">

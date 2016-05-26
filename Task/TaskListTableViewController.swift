@@ -8,9 +8,9 @@
 
 import UIKit
 
-class TaskListTableViewController: UITableViewController {
+class TaskListTableViewController: UITableViewController, ButtonTableViewCellDelegate {
 
-    @IBOutlet weak var labelField: UILabel!
+
     
     
     override func viewDidLoad() {
@@ -29,11 +29,10 @@ class TaskListTableViewController: UITableViewController {
 
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath)
-
-        // Configure the cell...
-        
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as? ButtonTableViewCell ?? ButtonTableViewCell()
+        let task = TaskController.sharedController.tasks[indexPath.row]
+        cell.updateWithTask(task)
+        cell.delegate = self
         return cell
     }
 
@@ -48,18 +47,34 @@ class TaskListTableViewController: UITableViewController {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
+    
+    // MARK: - ButtonTableViewCellDelegate
+    
+    func buttonCellButtonTapped(sender: ButtonTableViewCell) {
+        guard let indexPath = tableView.indexPathForCell(sender),
+            task = TaskController.sharedController.tasks[indexPath.row] else {return}
+        TaskController.sharedController.isCompleteValueToggle(task)
+    }
 
-
- 
-
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "toViewTask" {
+            if let taskDetailViewController = segue.destinationViewController as? TaskDetailTableViewController {
+                if let taskCell = sender as? UITableViewCell {
+                    if let indexPath = tableView.indexPathForCell(taskCell) {
+                let task = TaskController.sharedController.tasks[indexPath.row]
+                taskDetailViewController.task = task
+                    }
+                }
+            }
+        }
     }
-    */
-
 }
+
+
+
+
+
+
+

@@ -63,8 +63,11 @@ class TaskController {
         }
     }
         
-    func updateTask(task: Task, name: String, notes: String?, due: NSDate?, isComplete: Bool) {
-            
+    func updateTask(task: Task, name: String, notes: String?, due: NSDate?) {
+        task.name = name
+        task.notes = notes
+        task.due = due
+        saveToPersistentStore()
     }
         
     func saveToPersistentStore() {
@@ -74,6 +77,11 @@ class TaskController {
         } catch {
         print("There was an error trying to save")
         }
+    }
+    
+    func isCompleteValueToggle(task: Task) {
+        task.isComplete = !task.isComplete.boolValue
+        saveToPersistentStore()
     }
         
     func fetchTasks() -> [Task] {
